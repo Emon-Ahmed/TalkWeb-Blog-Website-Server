@@ -82,7 +82,6 @@ async function run() {
       app.post('/products', async (req, res) => {              
         const addProduct = req.body;       
         const result = await productsCollection.insertOne(addProduct);
-        console.log(result);
         res.json(result)        
    });
  
@@ -150,7 +149,6 @@ async function run() {
       app.post('/posts', async (req, res) => {           
         const addPosts = req.body;       
         const result = await postsCollection.insertOne(addPosts);
-        console.log(result);
         res.json(result)        
    });
     
