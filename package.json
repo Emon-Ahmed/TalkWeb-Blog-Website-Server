@@ -10,5 +10,21 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeasaleh2002/talkweb-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yeasaleh2002/talkweb-server/issues"
+  },
+  "homepage": "https://github.com/yeasaleh2002/talkweb-server#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongodb": "^4.2.2",
+    "nodemon": "^2.0.15"
+  }
 }
