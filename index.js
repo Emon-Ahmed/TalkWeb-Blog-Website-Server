@@ -20,7 +20,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    console.log("Server and Database connection succesfully!!!!");
+    console.log("Server and Database connection succesfully!!!!!!!!");
 
     // set database
     const database = client.db("talkWebDatabase");
