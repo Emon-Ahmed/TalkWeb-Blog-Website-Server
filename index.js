@@ -29,7 +29,7 @@ async function run() {
     const productsCollection = database.collection("products");
 
     // order collection
-    const ordersCollection = database.collection("oders");
+    const ordersCollection = database.collection("orders");
 
     // posts collection
     const postsCollection = database.collection("posts");
@@ -98,14 +98,14 @@ async function run() {
     /* ------------ Order part start---------------- */
 
     //Get orders Api
-    app.get("/oders", async (req, res) => {
+    app.get("/orders", async (req, res) => {
       const cursor = ordersCollection.find({});
       const orders = await cursor.toArray();
       res.send(orders);
     });
 
     // Get Spacific user order
-    app.get("/oders/:email", async (req, res) => {
+    app.get("/orders/:email", async (req, res) => {
       const userEmail = req.params.email;
       const query = { email: userEmail };
       const cursor = ordersCollection.find(query);
@@ -114,14 +114,14 @@ async function run() {
     });
 
     //-------- post data for orders-------
-    app.post("/oders", async (req, res) => {
+    app.post("/orders", async (req, res) => {
       const order = req.body;
       const result = await ordersCollection.insertOne(order);
       res.json(result);
     });
 
     // ----------- delete orders--------------
-    app.delete("/oders/:id", async (req, res) => {
+    app.delete("/orders/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectID(id) };
       const result = await ordersCollection.deleteOne(query);
@@ -129,6 +129,9 @@ async function run() {
     });
 
     /* -----------------order part end --------------------------*/
+
+
+
 
     /*--------------------------- Posts part start ------------------------- */
 
