@@ -20,7 +20,9 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    console.log("Server and Database connection succesfully! Monitored by Emon, Sohag, Yea saleh and Aman");
+    console.log(
+      "Server and Database connection succesfully! Monitored by Emon Ahmed, Md. Mahmudul Hasan, Md. Amanullah Parvez And Yeasaleh"
+    );
 
     // set database
     const database = client.db("talkWebDatabase");
@@ -85,9 +87,18 @@ async function run() {
       res.send(products);
     });
 
+       // ----------- get product--------------
+       app.get("/products/:id", async (req, res) => {
+        const id = req.params.id;
+        const cursor = await productsCollection.find({ _id: ObjectID(id) });
+        const result = await cursor.toArray();
+        res.send(result);
+      });
+
     // ----------- delete Product--------------
     app.delete("/products/:id", async (req, res) => {
       const id = req.params.id;
+
       const query = { _id: ObjectID(id) };
       const result = await productsCollection.deleteOne(query);
       res.send(result);
@@ -130,9 +141,6 @@ async function run() {
 
     /* -----------------order part end --------------------------*/
 
-
-
-
     /*--------------------------- Posts part start ------------------------- */
 
     // Post or add user post
@@ -147,6 +155,14 @@ async function run() {
       const cursor = postsCollection.find({});
       const posts = await cursor.toArray();
       res.send(posts);
+    });
+
+    // ----------- get post--------------
+    app.get("/posts/:id", async (req, res) => {
+      const id = req.params.id;
+      const cursor = await postsCollection.find({ _id: ObjectID(id) });
+      const result = await cursor.toArray();
+      res.send(result);
     });
 
     // ----------- delete post--------------
