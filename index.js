@@ -10,7 +10,7 @@ const { ObjectID } = require("bson");
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.uana9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.uana9.mongodb.net/woodcraft_shop?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -87,13 +87,13 @@ async function run() {
       res.send(products);
     });
 
-       // ----------- get product--------------
-       app.get("/products/:id", async (req, res) => {
-        const id = req.params.id;
-        const cursor = await productsCollection.find({ _id: ObjectID(id) });
-        const result = await cursor.toArray();
-        res.send(result);
-      });
+    // ----------- get product--------------
+    app.get("/products/:id", async (req, res) => {
+      const id = req.params.id;
+      const cursor = await productsCollection.find({ _id: ObjectID(id) });
+      const result = await cursor.toArray();
+      res.send(result);
+    });
 
     // ----------- delete Product--------------
     app.delete("/products/:id", async (req, res) => {
